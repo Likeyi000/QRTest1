@@ -1,0 +1,12 @@
+﻿<Window x:Class="QRMapEditor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:QRMapEditor"
+        mc:Ignorable="d" Height="834" Width="1536"
+        Icon="icon\editor.ico">
+    <Grid>
+        <local:Editor x:Name="editor" HorizontalAlignment="Left" Height="804" VerticalAlignment="Top" Width="1530" Margin="0,0,0,0"/>
+    </Grid>
+</Window>

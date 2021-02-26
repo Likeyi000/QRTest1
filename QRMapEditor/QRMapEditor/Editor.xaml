@@ -1,0 +1,159 @@
+﻿<UserControl x:Class="QRMapEditor.Editor"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:c="clr-namespace:QRMapEditor"
+             mc:Ignorable="d" 
+             d:DesignHeight="834" d:DesignWidth="1536">
+    <UserControl.InputBindings>
+        <KeyBinding Key="Left" Command="c:Editor.CanvML"/>
+        <KeyBinding Key="Right" Command="c:Editor.CanvMR"/>
+        <KeyBinding Key="Up" Command="c:Editor.CanvMU"/>
+        <KeyBinding Key="Down" Command="c:Editor.CanvMD"/>
+        <KeyBinding Modifiers="Ctrl" Key="R" Command="c:Editor.CanvRS"/>
+    </UserControl.InputBindings>
+    <UserControl.CommandBindings>
+        <CommandBinding Command="c:Editor.CanvRS"
+                        CanExecute="CanvRS_CanExecute"
+                        Executed="CanvRS_Execute"/>
+        <CommandBinding Command="c:Editor.CanvML"
+                        CanExecute="CanvML_CanExecute"
+                        Executed="CanvML_Execute"/>
+        <CommandBinding Command="c:Editor.CanvMR"
+                        CanExecute="CanvMR_CanExecute"
+                        Executed="CanvMR_Execute"/>
+        <CommandBinding Command="c:Editor.CanvMU"
+                        CanExecute="CanvMU_CanExecute"
+                        Executed="CanvMU_Execute"/>
+        <CommandBinding Command="c:Editor.CanvMD"
+                        CanExecute="CanvMD_CanExecute"
+                        Executed="CanvMD_Execute"/>
+    </UserControl.CommandBindings>
+    <DockPanel x:Name="QREditorControl" LastChildFill="True">
+        <DockPanel x:Name="InforSpace" Panel.ZIndex="2" Background="White" DockPanel.Dock="Top" Height="40" Width="1536">
+            <TextBox x:Name="FileName" Width="600" IsReadOnly="True" BorderBrush="{x:Null}"/>
+            <Label x:Name="FilePath" BorderBrush="{x:Null}"/>
+        </DockPanel>
+        <DockPanel x:Name="PropertySpace" Panel.ZIndex="2" DockPanel.Dock="Left" Height="794" Width="300">
+            <TreeView x:Name="PropertyTree">
+                <!--<TreeViewItem x:Name="NodesViewItem" Header="Node" IsSelected="False">-->
+                <DockPanel x:Name="NodeDetailDock" Margin="40,0,0,0">
+                    <DockPanel x:Name="NodeIDDock" DockPanel.Dock="Top">
+                        <Label Content="ID" DockPanel.Dock="left" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
+                        <TextBox x:Name="NodeID" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" BorderBrush="{x:Null}"/>
+                    </DockPanel>
+                    <DockPanel x:Name="NodeXDock" DockPanel.Dock="Top">
+                        <Label Content="X" DockPanel.Dock="left" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
+                        <TextBox x:Name="NodeX" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" BorderBrush="{x:Null}"/>
+                    </DockPanel>
+                    <DockPanel x:Name="NodeYDock" DockPanel.Dock="Top">
+                        <Label Content="Y" DockPanel.Dock="left" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
+                        <TextBox x:Name="NodeY" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" IsReadOnly="True" BorderBrush="{x:Null}"/>
+                    </DockPanel>
+                    <DockPanel x:Name="NodeQRDock" DockPanel.Dock="Top">
+                        <Label Content="QR" DockPanel.Dock="left" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
+                        <TextBox x:Name="NodeQR" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                    </DockPanel>
+                    <DockPanel x:Name="NodeRoleDock" DockPanel.Dock="Top">
+                        <Label Content="Role" DockPanel.Dock="left" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
+                        <ComboBox x:Name="combRole" SelectedIndex="0">
+                            <ComboBoxItem Content="Normal"/>
+                            <ComboBoxItem Content="Site"/>
+                            <ComboBoxItem Content="Charger"/>
+                        </ComboBox>
+                    </DockPanel>
+                    <DockPanel DockPanel.Dock="Top" LastChildFill="True">
+                        <Label Content="Dockable" x:Name="labDockable" Width="100" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                        <ComboBox x:Name="combDockable" SelectedIndex="0">
+                            <ComboBoxItem Content="True"/>
+                            <ComboBoxItem Content="False"/>
+                        </ComboBox>
+                    </DockPanel>
+                    <DockPanel x:Name="NodeSituation" DockPanel.Dock="Top">
+                        <Label Content="Status" DockPanel.Dock="left" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
+                        <TextBox x:Name="NodeStatus" Width="100" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
+                    </DockPanel>
+                    <DockPanel x:Name="NodeSiblings" DockPanel.Dock="Top" LastChildFill="True">
+                        <DockPanel x:Name="NodeSiblingDock" DockPanel.Dock="Left" LastChildFill="False" Width="100" Height="110">
+
+                        </DockPanel>
+                        <DockPanel x:Name="RoleDock" LastChildFill="False">
+                            <CheckBox x:Name="cbPose0" Content="0°" DockPanel.Dock="Top" Margin="0,6,0,0"/>
+                            <CheckBox x:Name="cbPose90" Content="90°" DockPanel.Dock="Top" Margin="0,10,0,0"/>
+                            <CheckBox x:Name="cbPose180" Content="180°" DockPanel.Dock="Top" Margin="0,10,0,0"/>
+                            <CheckBox x:Name="cbPose270" Content="270°" DockPanel.Dock="Top" Margin="0,10,0,6"/>
+                        </DockPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <Button x:Name="btnNodeOk" Content="确定" Width="100" Height="26" Margin="0,4,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" Click="btnNodeOk_Click"/>
+                    </DockPanel>
+                </DockPanel>
+                <!--</TreeViewItem>-->
+
+                <!--<TreeViewItem x:Name="RoadsViewItem" Margin="0, 40, 0, 0" Header="Road" IsSelected="False">
+                    <DockPanel x:Name="RoadDetailDock" Margin="40,0,0,0">
+                        <DockPanel DockPanel.Dock="Top">
+                            <DockPanel x:Name="RoadSituationDock" DockPanel.Dock="Top">
+                                <Label Content="Status" DockPanel.Dock="left" Width="100" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}"/>
+                                <TextBox x:Name="RoadStatus" Width="100" IsReadOnly="True" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" />
+                            </DockPanel>
+                            <DockPanel x:Name="RoadSiblingDock" Width="80" Height="60" DockPanel.Dock="Left">
+
+                            </DockPanel>
+                            <DockPanel x:Name="RNRoleDock" LastChildFill="False">
+                                <CheckBox x:Name="RNRole0" Content="0°" DockPanel.Dock="Top" Margin="0,6,0,0"/>
+                                <CheckBox x:Name="RNRole90" Content="90°" DockPanel.Dock="Top" Margin="0,10,0,0"/>
+                                <CheckBox x:Name="RNRole180" Content="180°" DockPanel.Dock="Top" Margin="0,10,0,0"/>
+                                <CheckBox x:Name="RNRole270" Content="270°" Margin="0,10,0,6"/>
+                            </DockPanel>
+                        </DockPanel>
+                        <DockPanel>
+                            <Button x:Name="btnRoadOk" Content="确定" Width="100" Height="26" Margin="0,4,0,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" BorderBrush="{x:Null}" Click="btnRoadOk_Click"/>
+                        </DockPanel>
+                    </DockPanel>
+                </TreeViewItem>-->
+            </TreeView>
+        </DockPanel>
+
+        <DockPanel x:Name="ToolSpace" Panel.ZIndex="2" Background="White" DockPanel.Dock="Top" Width="1236" Height="40">
+            <Button x:Name="NewFile" Height="30" Width="30" Margin="2,0,2,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="NewFile_Click">
+                <Image Source="icon\newFile.ico"/>
+            </Button>
+            <Button x:Name="InFile" Height="30" Width="30" Margin="2,0,2,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="InFile_Click">
+                <Image Source="icon\inputFile.ico"/>
+            </Button>
+            <Button x:Name="btnOutFile" Height="30" Width="30" Margin="2,0,2,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="Output_Click">
+                <Image Source="icon\outputFile.ico"/>
+            </Button>
+            <Button x:Name="btnSaveFile" Height="30" Width="30" Margin="2,0,2,0" BorderBrush="{x:Null}" Background="{x:Null}" Click="Save_Click">
+                <Image Source="icon\saveFile.ico"/>
+            </Button>
+            <Rectangle Height="36" Width="0.5" Fill="DarkGray"/>
+            <DockPanel LastChildFill="False">
+                <Label Content="行(N):"/>
+                <TextBox x:Name="labN" Margin="2,0,0,0" Height="26" Width="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Label Content="列(M):"/>
+                <TextBox x:Name="labM" Margin="2,0,0,0" Height="26" Width="40" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+                <Button x:Name="btnConfig" Content="确定" Margin="2, 0 , 0, 0" Height="26" Width="50" Click="btnConfig_Click"/>
+            </DockPanel>
+            <Label x:Name="FillUsed1"/>
+        </DockPanel>
+
+        <DockPanel x:Name="ViewSpace" LastChildFill="True">
+            <DockPanel x:Name="Station" Panel.ZIndex="2" DockPanel.Dock="Bottom" Height="40" Opacity="0.2"  MouseEnter="Station_MouseEnter" MouseLeave="Station_MouseLeave">
+                <Label x:Name="RealLocation" Content="0.00 , 0.00" Margin="2,2,0,2" Width="160" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="NodeCount" Content="0" Width="40" DockPanel.Dock="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label Content="NodeCount" DockPanel.Dock="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="RoadCount" Content="0" Width="40" DockPanel.Dock="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label Content="RoadCount" DockPanel.Dock="Right" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"/>
+                <Label x:Name="FillUsed2"/>
+            </DockPanel>
+            <DockPanel x:Name="canvDock" Height="670" Width="1220">
+                <DockPanel x:Name="CanvD" Panel.ZIndex="1" Width="1400" Height="800">
+                    <Canvas x:Name="Canv" Background="White" Margin="4, 0, 0, 8" Width="1400" Height="800"/>
+                </DockPanel>
+            </DockPanel>
+        </DockPanel>
+    </DockPanel>
+</UserControl>

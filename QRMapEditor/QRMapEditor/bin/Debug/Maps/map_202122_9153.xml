@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<map>
+
+    <basic>
+        <name>map_1</name>
+
+    </basic>
+
+    <model>
+        <nodes m="40" n= "20" unit="1000">
+            <node x="1" y = "1" qr="1" role="0" enabled ="true">
+                <sibling x="1" y="2" pose="90" />
+                <sibling x="2" y="1" pose="180" />
+            </node>
+            <node x="1" y = "2" qr="2" role="1" enabled ="true">
+                <sibling x="1" y="1" pose="270" />
+                <sibling x="1" y="3" pose="90, 270" />
+                <sibling x="2" y="2" pose="0, 180" />
+            </node>
+            <node x="1" y = "3" qr="3" role="2" enabled ="true">
+                <sibling x="1" y="2" pose="90, 270" />
+                <sibling x="2" y="3" pose="0, 180" />
+            </node>
+
+            <node x="2" y = "1" qr="4" role="0" enabled ="false">
+                <sibling x="1" y="1" pose="0, 180" />
+                <sibling x="3" y="1" pose="0, 180" />
+                <sibling x="2" y="2" pose="90, 270" />
+            </node>
+            <node x="2" y = "2" qr="5" role="0" enabled ="false">
+                <sibling x="2" y="1" pose="90, 270" />
+                <sibling x="2" y="3" pose="270" />
+                <sibling x="1" y="2" pose="0" />
+                <sibling x="3" y="2" pose="0, 180" />
+            </node>
+            <node x="2" y = "3" qr="6" role="0" enabled ="true">
+                <sibling x="1" y="3" pose="0" />
+                <sibling x="3" y="3" pose="0, 180" />
+                <sibling x="2" y="2" pose="90, 270" />
+            </node>
+
+            <node x="3" y = "1" qr="7" role="0" enabled ="false">
+                <sibling x="2" y="1" pose="180" />
+                <sibling x="3" y="2" pose="90, 270" />
+            </node>
+            <node x="3" y = "2" qr="8" role="0" enabled ="true">
+                <sibling x="3" y="1" pose="90, 270" />
+                <sibling x="3" y="3" pose="90, 270" />
+                <sibling x="2" y="2" pose="0, 180" />
+            </node>
+            <node x="3" y = "3" qr="9" role="0" enabled ="false">
+                <sibling x="3" y="2" pose="270" />
+                <sibling x="2" y="3" pose="0, 180" />
+            </node>
+        </nodes>
+		<roads>
+		</roads>
+    </model>
+</map>
